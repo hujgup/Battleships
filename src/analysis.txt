@@ -1,0 +1,36 @@
+In GameController.vb:
+	Public method GameController.New() has no XML documentation
+In GameResources.vb:
+	Public module GameResources has no XML documentation
+In UtilityFunctions.vb:
+	Public method UtilityFunctions.AddExplosion(ByVal Integer,ByVal Integer) has no XML documentation
+	Public method UtilityFunctions.AddSplash(ByVal Integer,ByVal Integer) has no XML documentation
+	Public method UtilityFunctions.UpdateAnimations() has no XML documentation
+	Public method UtilityFunctions.DrawAnimations() has no XML documentation
+	Public method UtilityFunctions.DrawAnimationSequence() has no XML documentation
+In Model/AIHardPlayer.vb:
+	Public method AIHardPlayer.Target.New() has no XML documentation
+	Public method AIHardPlayer.New() has no XML documentation
+In Model/AIMediumPlayer.vb:
+	Public method AIMediumPlayer.New() has no XML documentation
+In Model/AIPlayer.vb:
+	Public method AIPlayer.New() has no XML documentation
+In Model/ISeaGrid.vb:
+	Interface property ISeaGrid.Width() has no XML documentation
+	Interface property ISeaGrid.Height() has no XML documentation
+In Model/Player.vb:
+	Public method Player.New() has no XML documentation
+	Public property Player.IsDestroyes() has no XML documentation
+	Public property Player.Hits() has no XML documentation
+	Public property Player.Score() has no XML documentation
+	Public property Player.RandomizeDeployment() has no XML documentation
+In Model/Ship.vb:
+	Public property Ship.Column() has no XML documentation
+	Public property Ship.Direction() has no XML documentation
+	Public method Ship.New(ByVal ShipName) has no XML documentation
+	Public method Ship.Hit() has no XML documentation
+	Public property Ship.IsDestroyed() has no XML documentation
+In Model/ShipName.vb:
+	Public enumeration members have no XML documentation
+
+To TODO/FIXME/BUG comments are present
