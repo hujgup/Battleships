@@ -33,4 +33,4 @@ In Model/Ship.vb:
 In Model/ShipName.vb:
 	Public enumeration members have no XML documentation
 
-To TODO/FIXME/BUG comments are present
+No TODO/FIXME/BUG comments are present
