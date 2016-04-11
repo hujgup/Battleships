@@ -211,10 +211,16 @@ Module UtilityFunctions
         SwinGame.DrawFramerate(675, 585, GameFont("CourierSmall"))
     End Sub
 
+    ''' <summary>
+    ''' Draws an explosion at the specified tile
+    ''' </summary>
     Public Sub AddExplosion(ByVal row As Integer, ByVal col As Integer)
-        AddAnimation(row, col, "Splash")
+        AddAnimation(row, col, "Splash") // FIXME: Same AddAnimation args as AddSplash
     End Sub
 
+    ''' <summary>
+    ''' Draws a splash at the specified tile
+    ''' </summary>
     Public Sub AddSplash(ByVal row As Integer, ByVal col As Integer)
         AddAnimation(row, col, "Splash")
     End Sub
@@ -239,6 +245,9 @@ Module UtilityFunctions
         _Animations.Add(s)
     End Sub
 
+    ''' <summary>
+    ''' Advances the  each active animation to its next frame, or destroys them if their end has been reached
+    ''' </summary>
     Public Sub UpdateAnimations()
         Dim ended As New List(Of Sprite)()
         For Each s As Sprite In _Animations
@@ -254,12 +263,19 @@ Module UtilityFunctions
         Next
     End Sub
 
+    ''' <summary>
+    ''' Draws the current frame for each active animation
+    ''' </summary>
     Public Sub DrawAnimations()
         For Each s As Sprite In _Animations
             SwinGame.DrawSprite(s)
         Next
     End Sub
 
+    ''' <summary>
+    ''' NULL
+    ''' </summary>
+    // TODO: I'm not actually sure what this method is doing
     Public Sub DrawAnimationSequence()
         Dim i as Integer
 For i  = 1 To ANIMATION_CELLS * FRAMES_PER_CELL

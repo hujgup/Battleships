@@ -38,6 +38,12 @@ Public Class Player : Implements IEnumerable(Of Ship)
         End Set
     End Property
 
+    ''' <summary>
+    ''' Initializes a new instance of a Player
+    ''' </summary>
+    ''' <value>A new Player</value>
+    ''' <returns>A new Player</returns>
+    ''' <param name="controller">The game that this Player is a player in.</param>
     Public Sub New(ByVal controller As BattleShipsGame)
         _game = controller
 
@@ -81,6 +87,9 @@ Public Class Player : Implements IEnumerable(Of Ship)
         End Get
     End Property
 
+    ''' <summary>
+    ''' IsDestroyed returns true if all of the player's ships have been destroyed
+    ''' </summary>
     Public ReadOnly Property IsDestroyed() As Boolean
         Get
             'Check if all ships are destroyed... -1 for the none ship
@@ -114,6 +123,11 @@ Public Class Player : Implements IEnumerable(Of Ship)
         End Get
     End Property
 
+    ''' <summary>
+    ''' The number of hits the player has made
+    ''' </summary>
+    ''' <value>Number of hit shots</value>
+    ''' <returns>Number of hit shots</returns>
     Public ReadOnly Property Hits() As Integer
         Get
             Return _hits
@@ -131,6 +145,11 @@ Public Class Player : Implements IEnumerable(Of Ship)
         End Get
     End Property
 
+    ''' <summary>
+    ''' The total score the player had earned
+    ''' </summary>
+    ''' <value>Current score</value>
+    ''' <returns>The current score</returns>
     Public ReadOnly Property Score() As Integer
         Get
             If IsDestroyed Then
@@ -198,6 +217,9 @@ Public Class Player : Implements IEnumerable(Of Ship)
         Return result
     End Function
 
+    ''' <summary>
+    ''' Automatically deploys the player's ships in random positions
+    ''' </summary>
     Public Overridable Sub RandomizeDeployment()
         Dim placementSuccessful As Boolean
         Dim heading As Direction

@@ -64,18 +64,34 @@ Public Class Ship
         End Get
     End Property
 
+    ''' <summary>
+    ''' The column location of the ship
+    ''' </summary>
+    ''' <value>The topmost location of the ship</value>
+    ''' <returns>The column of the ship</returns>
     Public ReadOnly Property Column() As Integer
         Get
             Return _col
         End Get
     End Property
 
+    ''' <summary>
+    ''' The directin this ship has been rotated to face
+    ''' </summary>
+    ''' <value>The direction</value>
+    ''' <returns>The direction of the ship</returns>
     Public ReadOnly Property Direction() As Direction
         Get
             Return _direction
         End Get
     End Property
 
+    ''' <summary>
+    ''' Initializes a new instance of a Ship
+    ''' </summary>
+    ''' <value>A new Ship</value>
+    ''' <returns>A new Ship</returns>
+    ''' <param name="ship">The name of this ship</param>
     Public Sub New(ByVal ship As ShipName)
         _shipName = ship
         _tiles = New List(Of Tile)()
@@ -102,6 +118,9 @@ Public Class Ship
         _tiles.Clear()
     End Sub
 
+    ''' <summary>
+    ''' Hit increments the ship's hit counter
+    ''' </summary>
     Public Sub Hit()
         _hitsTaken = _hitsTaken + 1
     End Sub
@@ -116,6 +135,9 @@ Public Class Ship
         End Get
     End Property
 
+    ''' <summary>
+    ''' IsDeployed returns true if the ship has been hit on every tile it occupies
+    ''' </summary>
     Public ReadOnly Property IsDestroyed() As Boolean
         Get
             Return Hits = Size

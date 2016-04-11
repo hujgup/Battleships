@@ -72,6 +72,12 @@ Public MustInherit Class AIPlayer : Inherits Player
     End Class
 
 
+    ''' <summary>
+    ''' Initializes a new instance of an AIPlayer
+    ''' </summary>
+    ''' <value>A new AIPlayer</value>
+    ''' <returns>A new AIPlayer</returns>
+    ''' <param name="game">The game that this AIPlayer is a player in.</param>
     Public Sub New(ByVal game As BattleShipsGame)
         MyBase.New(game)
     End Sub

@@ -37,6 +37,14 @@ Public Class AIHardPlayer : Inherits AIPlayer
             End Get
         End Property
 
+        ''' <summary>
+        ''' Initializes a new instance of a Target.
+        ''' </summary>
+	''' <param name="shootat">The location being shot at.</param>
+	''' <param name="source">The location the shot originated from.</param>
+        ''' <value>A new Target.</value>
+        ''' <returns>A new Target.</returns>
+	// TODO: Validate that the description for "source" is accurate
         Friend Sub New(ByVal shootat As Location, ByVal source As Location)
             _ShotAt = shootat
             _Source = source
@@ -90,6 +98,12 @@ Public Class AIHardPlayer : Inherits AIPlayer
     Private _LastHit As New List(Of Target)()
     Private _CurrentTarget As Target
 
+    ''' <summary>
+    ''' Initializes a new instance of an AIHardPlayer
+    ''' </summary>
+    ''' <value>A new AIHardPlayer</value>
+    ''' <returns>A new AIHardPlayer</returns>
+    ''' <param name="game">The game that this AIHardPlayer is a player in.</param>
     Public Sub New(ByVal game As BattleShipsGame)
         MyBase.New(game)
     End Sub

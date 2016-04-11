@@ -49,6 +49,11 @@ Public Module GameController
         End Get
     End Property
 
+    ''' <summary>
+    ''' Initializes a new GameController.
+    ''' </summary>
+    ''' <value>A new GameController.</value>
+    ''' <returns>A new GameController.</returns>
     Sub New()
         'bottom state will be quitting. If player exits main menu then the game is over
         _state.Push(GameState.Quitting)

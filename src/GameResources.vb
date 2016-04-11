@@ -1,6 +1,9 @@
 Imports SwinGameSDK
 Imports System.Collections.Generic
 
+''' <summary>
+''' GameResources describes a set of methods for managing the resource files used by the game.
+''' </summary>
 Public Module GameResources
 
     Private Sub LoadFonts()
