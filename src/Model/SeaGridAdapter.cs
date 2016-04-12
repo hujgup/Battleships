@@ -58,6 +58,7 @@ public class SeaGridAdapter : ISeaGrid
 	/// <summary>
 	/// Indicates that the grid has been changed
 	/// </summary>
+
 	public event System.EventHandler Changed;
 
 	/// <summary>
