@@ -1,14 +1,15 @@
-
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
+//using System.Data;
 using System.Diagnostics;
+using SwinGameSDK;
 /// <summary>
 /// This includes a number of utility methods for
 /// drawing and interacting with the Mouse.
 /// </summary>
+
 public static class UtilityFunctions
 {
 	public const int FIELD_TOP = 122;
@@ -195,7 +196,7 @@ public static class UtilityFunctions
 			}
 
 			if (!small) {
-				SwinGame.DrawBitmap(GameImage(shipName), colLeft, rowTop);
+				SwinGame.DrawBitmap(GameResources.GameImage(shipName), colLeft, rowTop);
 			} else {
 				SwinGame.FillRectangle(SHIP_FILL_COLOR, colLeft, rowTop, shipWidth, shipHeight);
 				SwinGame.DrawRectangle(SHIP_OUTLINE_COLOR, colLeft, rowTop, shipWidth, shipHeight);
@@ -220,7 +221,7 @@ public static class UtilityFunctions
 	/// </summary>
 	public static void DrawMessage()
 	{
-		SwinGame.DrawText(Message, MESSAGE_COLOR, GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
+		SwinGame.DrawText(Message, MESSAGE_COLOR, GameResources.GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
 	}
 
 	/// <summary>
@@ -229,26 +230,26 @@ public static class UtilityFunctions
 
 	public static void DrawBackground()
 	{
-		switch (CurrentState) {
+		switch (GameController.CurrentState) {
 			case GameState.ViewingMainMenu:
 			case GameState.ViewingGameMenu:
 			case GameState.AlteringSettings:
 			case GameState.ViewingHighScores:
-				SwinGame.DrawBitmap(GameImage("Menu"), 0, 0);
+				SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0);
 				break;
 			case GameState.Discovering:
 			case GameState.EndingGame:
-				SwinGame.DrawBitmap(GameImage("Discovery"), 0, 0);
+				SwinGame.DrawBitmap(GameResources.GameImage("Discovery"), 0, 0);
 				break;
 			case GameState.Deploying:
-				SwinGame.DrawBitmap(GameImage("Deploy"), 0, 0);
+				SwinGame.DrawBitmap(GameResources.GameImage("Deploy"), 0, 0);
 				break;
 			default:
 				SwinGame.ClearScreen();
 				break;
 		}
 
-		SwinGame.DrawFramerate(675, 585, GameFont("CourierSmall"));
+		SwinGame.DrawFramerate(675, 585, GameResources.GameFont("CourierSmall"));
 	}
 
 	public static void AddExplosion(int row, int col)
@@ -268,7 +269,7 @@ public static class UtilityFunctions
 		Sprite s = default(Sprite);
 		Bitmap imgObj = default(Bitmap);
 
-		imgObj = GameImage(image);
+		imgObj = GameResources.GameImage(image);
 		imgObj.SetCellDetails(40, 40, 3, 3, 7);
 
 		AnimationScript animation = default(AnimationScript);
@@ -310,7 +311,7 @@ public static class UtilityFunctions
 		int i = 0;
 		for (i = 1; i <= ANIMATION_CELLS * FRAMES_PER_CELL; i++) {
 			UpdateAnimations();
-			DrawScreen();
+			GameController.DrawScreen();
 		}
 	}
 }
