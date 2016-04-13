@@ -1,5 +1,4 @@
-
-using Microsoft.VisualBasic;
+//using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -141,7 +140,7 @@ static class MenuController
 	public static void DrawMainMenu()
 	{
 		//Clears the Screen to Black
-		//SwinGame.DrawText("Main Menu", Color.White, GameFont("ArialLarge"), 50, 50)
+		//SwinGame.DrawText("Main Menu", Color.White, GameResources.GameFont("ArialLarge"), 50, 50)
 
 		DrawButtons(MAIN_MENU);
 	}
@@ -152,7 +151,7 @@ static class MenuController
 	public static void DrawGameMenu()
 	{
 		//Clears the Screen to Black
-		//SwinGame.DrawText("Paused", Color.White, GameFont("ArialLarge"), 50, 50)
+		//SwinGame.DrawText("Paused", Color.White, GameResources.GameFont("ArialLarge"), 50, 50)
 
 		DrawButtons(GAME_MENU);
 	}
@@ -166,7 +165,7 @@ static class MenuController
 	public static void DrawSettings()
 	{
 		//Clears the Screen to Black
-		//SwinGame.DrawText("Settings", Color.White, GameFont("ArialLarge"), 50, 50)
+		//SwinGame.DrawText("Settings", Color.White, GameResources.GameFont("ArialLarge"), 50, 50)
 
 		DrawButtons(MAIN_MENU);
 		DrawButtons(SETUP_MENU, 1, 1);
@@ -202,6 +201,7 @@ static class MenuController
 			int btnLeft = 0;
 			btnLeft = MENU_LEFT + BUTTON_SEP * (i + xOffset);
 			//SwinGame.FillRectangle(Color.White, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT)
+
 			SwinGame.DrawTextLines(_menuStructure[menu][i], MENU_COLOR, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, btnLeft + TEXT_OFFSET, btnTop + TEXT_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT);
 
 			if (SwinGame.MouseDown(MouseButton.LeftButton) & IsMouseOverMenu(i, level, xOffset)) {
@@ -263,7 +263,11 @@ static class MenuController
 	{
 		switch (button) {
 			case MAIN_MENU_PLAY_BUTTON:
+<<<<<<< HEAD
 			GameController.StartGame();
+=======
+				GameController.StartGame();
+>>>>>>> 156b1f7a55c9e5d326a6f0b88c99556af6d12d8d
 				break;
 			case MAIN_MENU_SETUP_BUTTON:
 				GameController.AddNewState(GameState.AlteringSettings);

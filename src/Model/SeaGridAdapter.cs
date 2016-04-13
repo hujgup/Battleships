@@ -1,5 +1,4 @@
-
-using Microsoft.VisualBasic;
+//using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -59,7 +58,9 @@ public class SeaGridAdapter : ISeaGrid
 	/// <summary>
 	/// Indicates that the grid has been changed
 	/// </summary>
+
 	public event EventHandler Changed;
+
 
 	/// <summary>
 	/// Get the width of a tile
