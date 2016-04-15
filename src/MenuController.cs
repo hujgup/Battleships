@@ -263,11 +263,9 @@ static class MenuController
 	{
 		switch (button) {
 			case MAIN_MENU_PLAY_BUTTON:
-<<<<<<< HEAD
+
 			GameController.StartGame();
-=======
-				GameController.StartGame();
->>>>>>> 156b1f7a55c9e5d326a6f0b88c99556af6d12d8d
+
 				break;
 			case MAIN_MENU_SETUP_BUTTON:
 				GameController.AddNewState(GameState.AlteringSettings);
