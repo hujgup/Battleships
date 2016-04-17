@@ -1,4 +1,5 @@
-//using Microsoft.VisualBasic;
+
+using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,9 +26,7 @@ public class SeaGrid : ISeaGrid
 	/// <summary>
 	/// The sea grid has changed and should be redrawn.
 	/// </summary>
-
 	public event EventHandler Changed;
-
 
 	/// <summary>
 	/// The width of the sea grid.

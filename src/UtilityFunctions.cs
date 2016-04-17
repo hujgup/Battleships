@@ -1,3 +1,4 @@
+
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
@@ -11,10 +12,7 @@ using SwinGameSDK;
 /// This includes a number of utility methods for
 /// drawing and interacting with the Mouse.
 /// </summary>
-
-
-public static class UtilityFunctions
-
+static class UtilityFunctions
 {
 	public const int FIELD_TOP = 122;
 	public const int FIELD_LEFT = 349;
@@ -239,7 +237,6 @@ public static class UtilityFunctions
 			case GameState.ViewingGameMenu:
 			case GameState.AlteringSettings:
 			case GameState.ViewingHighScores:
-
 			SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0);
 				break;
 			case GameState.Discovering:
@@ -248,7 +245,6 @@ public static class UtilityFunctions
 				break;
 			case GameState.Deploying:
 			SwinGame.DrawBitmap(GameResources.GameImage("Deploy"), 0, 0);
-
 				break;
 			default:
 				SwinGame.ClearScreen();

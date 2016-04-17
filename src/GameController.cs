@@ -1,4 +1,5 @@
-//using Microsoft.VisualBasic;
+
+using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -88,7 +89,7 @@ public static class GameController
 
 		_human = new Player(_theGame);
 
-		//AddHandler _human.PlayerGrid.Changed, AddressOf GridChanged
+		
 		_ai.PlayerGrid.Changed += GridChanged;
 		_theGame.AttackCompleted += AttackCompleted;
 
@@ -101,7 +102,7 @@ public static class GameController
 
 	private static void EndGame()
 	{
-		//RemoveHandler _human.PlayerGrid.Changed, AddressOf GridChanged
+		
 		_ai.PlayerGrid.Changed -= GridChanged;
 		_theGame.AttackCompleted -= AttackCompleted;
 	}
@@ -162,27 +163,22 @@ public static class GameController
 		switch (result.Value) {
 			case ResultOfAttack.Destroyed:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-
 			Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
 
 				break;
 			case ResultOfAttack.GameOver:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-
 			Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
 
 			while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink"))) {
-
 					SwinGame.Delay(10);
 					SwinGame.RefreshScreen();
 				}
 
 				if (HumanPlayer.IsDestroyed) {
-
 				Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
 				} else {
 				Audio.PlaySoundEffect(GameResources.GameSound("Winner"));
-
 				}
 
 				break;
@@ -193,9 +189,7 @@ public static class GameController
 				PlayMissSequence(result.Row, result.Column, isHuman);
 				break;
 			case ResultOfAttack.ShotAlready:
-
 			Audio.PlaySoundEffect(GameResources.GameSound("Error"));
-
 				break;
 		}
 	}
@@ -318,9 +312,7 @@ public static class GameController
 
 		switch (CurrentState) {
 			case GameState.ViewingMainMenu:
-
 			MenuController.DrawMainMenu();
-
 				break;
 			case GameState.ViewingGameMenu:
 				MenuController.DrawGameMenu();
