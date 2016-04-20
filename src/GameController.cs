@@ -20,8 +20,6 @@ public static class GameController
 
 	private static AIPlayer _ai;
 
-	
-
 	private static Stack<GameState> _state = new Stack<GameState>();
 
 	private static AIOption _aiSetting;
