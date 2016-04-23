@@ -40,16 +40,10 @@ public class Player : IEnumerable<Ship>
 		set { _enemyGrid = value; }
 	}
 
-	/// <summary>
-	/// Initializes a new instance of a Player
-	/// </summary>
-	/// <value>A new Player</value>
-	/// <returns>A new Player</returns>
-	/// <param name="controller">The game that this Player is a player in.</param>
 	public Player(BattleShipsGame controller)
 	{
 		_game = controller;
-		_playerGrid = new SeaGrid(_Ships);
+    _playerGrid = new SeaGrid(_Ships);
 
 		//for each ship add the ships name so the seagrid knows about them
 		foreach (ShipName name in Enum.GetValues(typeof(ShipName))) {
@@ -83,11 +77,8 @@ public class Player : IEnumerable<Ship>
 		get { return _playerGrid.AllDeployed; }
 	}
 
-	/// <summary>
-	/// IsDestroyed returns true if all of the player's ships have been destroyed
-	/// </summary>
 	public bool IsDestroyed {
-		//Check if all ships are destroyed... -1 for the none ship
+//Check if all ships are destroyed... -1 for the none ship
 		get { return _playerGrid.ShipsKilled == Enum.GetValues(typeof(ShipName)).Length - 1; }
 	}
 
@@ -114,11 +105,6 @@ public class Player : IEnumerable<Ship>
 		get { return _shots; }
 	}
 
-	/// <summary>
-	/// The number of hits the player has made
-	/// </summary>
-	/// <value>Number of hit shots</value>
-	/// <returns>Number of hit shots</returns>
 	public int Hits {
 		get { return _hits; }
 	}
@@ -132,11 +118,6 @@ public class Player : IEnumerable<Ship>
 		get { return _misses; }
 	}
 
-	/// <summary>
-	/// The total score the player has earned
-	/// </summary>
-	/// <value>Current score</value>
-	/// <returns>The current score</returns>
 	public int Score {
 		get {
 			if (IsDestroyed) {
@@ -161,11 +142,6 @@ public class Player : IEnumerable<Ship>
 
 		return lst.GetEnumerator();
 	}
-	/// <summary>
-	/// Makes it possible to enumerate over the ships the player
-	/// has.
-	/// </summary>
-	/// <returns>A Ship enumerator</returns>
 	IEnumerator<Ship> IEnumerable<Ship>.GetEnumerator()
 	{
 		return GetShipEnumerator();
@@ -203,16 +179,18 @@ public class Player : IEnumerable<Ship>
 	/// <returns>the result of the attack</returns>
 	internal AttackResult Shoot(int row, int col)
 	{
-		_shots += 1;
+		
 		AttackResult result = default(AttackResult);
 		result = EnemyGrid.HitTile(row, col);
 
 		switch (result.Value) {
 			case ResultOfAttack.Destroyed:
 			case ResultOfAttack.Hit:
+                _shots += 1;
 				_hits += 1;
 				break;
 			case ResultOfAttack.Miss:
+                _shots += 1;
 				_misses += 1;
 				break;
 		}
@@ -220,9 +198,6 @@ public class Player : IEnumerable<Ship>
 		return result;
 	}
 
-	/// <summary>
-	/// Automatically deploys the player's ships in random positions
-	/// </summary>
 	public virtual void RandomizeDeployment()
 	{
 		bool placementSuccessful = false;
