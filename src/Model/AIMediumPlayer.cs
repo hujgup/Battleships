@@ -1,4 +1,3 @@
-
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
@@ -32,7 +31,7 @@ public class AIMediumPlayer : AIPlayer
 	/// <value>A new AIMediumPlayer</value>
 	/// <returns>A new AIMediumPlayer</returns>
 	/// <param name="game">The game that this AIMediumPlayer is a player in.</param>
-	public AIMediumPlayer(BattleShipsGame controller) : base(controller)
+	public AIMediumPlayer(BattleShipsGame game) : base(game)
 	{
 	}
 
@@ -56,7 +55,7 @@ public class AIMediumPlayer : AIPlayer
 					TargetCoords(ref row, ref column);
 					break;
 				default:
-					throw new ApplicationException("AI has gone in an imvalid state");
+					throw new ApplicationException("AI has gone in an invalid state");
 			}
 		} while ((row < 0 || column < 0 || row >= EnemyGrid.Height || column >= EnemyGrid.Width || EnemyGrid[row, column] != TileView.Sea));
 		//while inside the grid and not a sea tile do the search
