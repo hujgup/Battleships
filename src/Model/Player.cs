@@ -118,6 +118,9 @@ public class Player : IEnumerable<Ship>
 		get { return _misses; }
 	}
 
+	/// <summary>
+	/// The current score.
+	/// </summary>
 	public int Score {
 		get {
 			if (IsDestroyed) {
