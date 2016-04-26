@@ -58,8 +58,7 @@ public abstract class AIPlayer : Player
 		/// Determines whether the specified object is equal to the current object.
 		/// </summary>
 		/// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-		/// <param name="obj">The object to compare with the current object.</param>
-		/// <param name="other">The <see cref="AIPlayer+Location"/> to compare with the current <see cref="AIPlayer+Location"/>.</param>
+		/// <param name="other">The <see cref="AIPlayer.Location"/> to compare with the current <see cref="AIPlayer.Location"/>.</param>
 		public bool Equals(Location other)
 		{
 			return this == other;
@@ -68,7 +67,7 @@ public abstract class AIPlayer : Player
 		/// Determines whether the specified object is equal to the current object.
 		/// </summary>
 		/// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-		/// <param name="obj">The <see cref="System.Object"/> to compare with the current <see cref="AIPlayer+Location"/>.</param>
+		/// <param name="obj">The <see cref="System.Object"/> to compare with the current <see cref="AIPlayer.Location"/>.</param>
 		public override bool Equals(object obj)
 		{
 			return GetType().IsInstanceOfType(obj) ? this.Equals((Location)obj) : false;;

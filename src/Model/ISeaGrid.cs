@@ -22,27 +22,17 @@ public interface ISeaGrid
 	/// The height of this ISeaGrid.
 	/// </summary>
 	int Height { get; }
-	/// <summary>
-	/// Indicates that the grid has changed.
-	/// </summary>
 
 	/// <summary>
 	/// Indicates that the grid has changed.
 	/// </summary>
 	event EventHandler Changed;
-	/// <summary>
-	/// Provides access to the given row/column
-	/// </summary>
-	/// <param name="row">the row to access</param>
-	/// <param name="column">the column to access</param>
-	/// <value>what the player can see at that location</value>
-	/// <returns>what the player can see at that location</returns>
 
 	/// <summary>
 	/// Provides access to the given row/column
 	/// </summary>
 	/// <param name="row">the row to access</param>
-	/// <param name="column">the column to access</param>
+	/// <param name="col">the column to access</param>
 	/// <value>what the player can see at that location</value>
 	/// <returns>what the player can see at that location</returns>
 	TileView this[int row, int col] { get; }

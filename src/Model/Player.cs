@@ -11,12 +11,17 @@ using System.Diagnostics;
 /// </summary>
 public class Player : IEnumerable<Ship>
 {
-
+	/// <summary>
+	/// Provides a random number generator.
+	/// </summary>
 	protected static Random _Random = new Random();
 	private Dictionary<ShipName, Ship> _Ships = new Dictionary<ShipName, Ship>();
 	private SeaGrid _playerGrid;
 	private ISeaGrid _enemyGrid;
 
+	/// <summary>
+	/// Provides access to the current game.
+	/// </summary>
 	protected BattleShipsGame _game;
 	private int _shots;
 	private int _hits;
@@ -40,6 +45,10 @@ public class Player : IEnumerable<Ship>
 		set { _enemyGrid = value; }
 	}
 
+	/// <summary>
+	/// Initializes a new instance of the <see cref="Player"/> class.
+	/// </summary>
+	/// <param name="controller">The current game.</param>
 	public Player(BattleShipsGame controller)
 	{
 		_game = controller;
@@ -77,6 +86,10 @@ public class Player : IEnumerable<Ship>
 		get { return _playerGrid.AllDeployed; }
 	}
 
+	/// <summary>
+	/// Gets a value indicating whether all of the player's ships have been destroyed.
+	/// </summary>
+	/// <value><c>true</c> if all ships are destroyed; otherwise, <c>false</c>.</value>
 	public bool IsDestroyed {
 //Check if all ships are destroyed... -1 for the none ship
 		get { return _playerGrid.ShipsKilled == Enum.GetValues(typeof(ShipName)).Length - 1; }
@@ -105,6 +118,9 @@ public class Player : IEnumerable<Ship>
 		get { return _shots; }
 	}
 
+	/// <summary>
+	/// Gets the number of hits.
+	/// </summary>
 	public int Hits {
 		get { return _hits; }
 	}
@@ -145,6 +161,10 @@ public class Player : IEnumerable<Ship>
 
 		return lst.GetEnumerator();
 	}
+	/// <summary>
+	/// Gets the enumerator.
+	/// </summary>
+	/// <returns>The enumerator.</returns>
 	IEnumerator<Ship> IEnumerable<Ship>.GetEnumerator()
 	{
 		return GetShipEnumerator();
@@ -201,6 +221,9 @@ public class Player : IEnumerable<Ship>
 		return result;
 	}
 
+	/// <summary>
+	/// Ramdomizes the positioning of this player's ships.
+	/// </summary>
 	public virtual void RandomizeDeployment()
 	{
 		bool placementSuccessful = false;

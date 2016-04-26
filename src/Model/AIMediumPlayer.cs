@@ -31,7 +31,7 @@ public class AIMediumPlayer : AIPlayer
 	/// </summary>
 	/// <value>A new AIMediumPlayer</value>
 	/// <returns>A new AIMediumPlayer</returns>
-	/// <param name="game">The game that this AIMediumPlayer is a player in.</param>
+	/// <param name="controller">The game that this AIMediumPlayer is a player in.</param>
 	public AIMediumPlayer(BattleShipsGame controller) : base(controller)
 	{
 	}

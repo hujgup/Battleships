@@ -110,6 +110,10 @@ public class SeaGrid : ISeaGrid
 		AddShip(row, col, direction, newShip);
 	}
 
+	/// <summary>
+	/// Gets the ship currently occupying the specified tile.
+	/// </summary>
+	/// <param name="location">The tile to check.</param>
 	public Ship GetShipAtTile(Tile location) {
 		Ship res = null;
 		List<Tile> occupiedTiles;

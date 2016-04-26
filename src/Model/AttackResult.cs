@@ -59,9 +59,12 @@ public class AttackResult
 	}
 
 	/// <summary>
-	/// Set the _Value to the PossibleAttack value
+	/// Initializes a new instance of the <see cref="AttackResult"/> class.
 	/// </summary>
 	/// <param name="value">either hit, miss, destroyed, shotalready</param>
+	/// <param name="text">The text to show to the player.</param>
+	/// <param name="row">The row that was attacked.</param>
+	/// <param name="column">The column that was attacked.</param>
 	public AttackResult(ResultOfAttack value, string text, int row, int column)
 	{
 		_Value = value;
@@ -72,10 +75,13 @@ public class AttackResult
 	}
 
 	/// <summary>
-	/// Set the _Value to the PossibleAttack value, and the _Ship to the ship
+	/// Initializes a new instance of the <see cref="AttackResult"/> class.
 	/// </summary>
 	/// <param name="value">either hit, miss, destroyed, shotalready</param>
-	/// <param name="ship">the ship information</param>
+	/// <param name="ship">The ship that was targeted.</param>
+	/// <param name="text">The text to show to the player.</param>
+	/// <param name="row">The row that was attacked.</param>
+	/// <param name="column">The column that was attacked.</param>
 	public AttackResult(ResultOfAttack value, Ship ship, string text, int row, int column) : this(value, text, row, column)
 	{
 		_Ship = ship;

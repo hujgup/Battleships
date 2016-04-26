@@ -37,6 +37,9 @@ public class Ship
 			return _shipName.ToString();
 		}
 	}
+	/// <summary>
+	/// Gets the ShipName of this ship.
+	/// </summary>
 	public ShipName Type {
 		get { return _shipName; }
 	}
@@ -69,6 +72,9 @@ public class Ship
 		get { return _row; }
 	}
 
+	/// <summary>
+	/// Gets the set of tiles that are occupied by this ship.
+	/// </summary>
 	public List<Tile> OccupiedTiles {
 		get { return new List<Tile>(_tiles); }
 	}
