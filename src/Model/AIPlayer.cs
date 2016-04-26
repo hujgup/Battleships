@@ -18,7 +18,7 @@ public abstract class AIPlayer : Player
 	/// Location can store the location of the last hit made by an
 	/// AI Player. The use of which determines the difficulty.
 	/// </summary>
-	protected class Location
+	protected class Location : IEquatable<Location>
 	{
 		private int _Row;
 
@@ -52,6 +52,37 @@ public abstract class AIPlayer : Player
 		{
 			_Column = column;
 			_Row = row;
+		}
+
+		/// <summary>
+		/// Determines whether the specified object is equal to the current object.
+		/// </summary>
+		/// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+		/// <param name="obj">The object to compare with the current object.</param>
+		/// <param name="other">The <see cref="AIPlayer+Location"/> to compare with the current <see cref="AIPlayer+Location"/>.</param>
+		public bool Equals(Location other)
+		{
+			return this == other;
+		}
+		/// <summary>
+		/// Determines whether the specified object is equal to the current object.
+		/// </summary>
+		/// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+		/// <param name="obj">The <see cref="System.Object"/> to compare with the current <see cref="AIPlayer+Location"/>.</param>
+		public override bool Equals(object obj)
+		{
+			return GetType().IsInstanceOfType(obj) ? this.Equals((Location)obj) : false;;
+		}
+		/// <summary>
+		/// Serves as the default hash function.
+		/// </summary>
+		/// <returns>A hash code for the current object.</returns>
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				return Row.GetHashCode() + Column.GetHashCode();
+			}
 		}
 
 		/// <summary>
