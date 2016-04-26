@@ -110,6 +110,24 @@ public class SeaGrid : ISeaGrid
 		AddShip(row, col, direction, newShip);
 	}
 
+	public Ship GetShipAtTile(Tile location) {
+		Ship res = null;
+		List<Tile> occupiedTiles;
+		foreach (KeyValuePair<ShipName, Ship> kvp in _Ships) {
+			occupiedTiles = kvp.Value.OccupiedTiles;
+			foreach (Tile t in occupiedTiles) {
+				if (t.Row == location.Row && t.Column == location.Column) {
+					res = kvp.Value;
+					break;
+				}
+			}
+			if (res != null) {
+				break;
+			}
+		}
+		return res;
+	}
+
 	/// <summary>
 	/// AddShip add a ship to the SeaGrid
 	/// </summary>

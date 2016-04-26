@@ -21,8 +21,8 @@ public class Ship
 	private List<Tile> _tiles;
 	private int _row;
 	private int _col;
-
 	private Direction _direction;
+
 	/// <summary>
 	/// The type of ship
 	/// </summary>
@@ -36,6 +36,9 @@ public class Ship
 
 			return _shipName.ToString();
 		}
+	}
+	public ShipName Type {
+		get { return _shipName; }
 	}
 
 	/// <summary>
@@ -64,6 +67,10 @@ public class Ship
 	/// <returns>the row of the ship</returns>
 	public int Row {
 		get { return _row; }
+	}
+
+	public List<Tile> OccupiedTiles {
+		get { return new List<Tile>(_tiles); }
 	}
 
 	/// <summary>
