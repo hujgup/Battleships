@@ -332,6 +332,8 @@ public static class GameController
 				break;
 			case GameState.Discovering:
 				DiscoveryController.DrawDiscovery();
+				SwinGame.DrawCircle(_theGame.TurnIndicator,280,300,5);
+				SwinGame.FillCircle(_theGame.TurnIndicator,280,300,4);
 				break;
 			case GameState.EndingGame:
 				EndingGameController.DrawEndOfGame();

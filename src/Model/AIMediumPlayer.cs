@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 // using System.Data;
 using System.Diagnostics;
+using Color = SwinGameSDK.Color;
 
 /// <summary>
 /// The AIMediumPlayer is a type of AIPlayer where it will try and destroy a ship
@@ -25,6 +26,8 @@ public class AIMediumPlayer : AIPlayer
 	private AIStates _CurrentState = AIStates.Searching;
 
 	private Stack<Location> _Targets = new Stack<Location>();
+	private readonly Color _col;
+
 	/// <summary>
 	/// Initializes a new instance of an AIMediumPlayer
 	/// </summary>
@@ -33,6 +36,16 @@ public class AIMediumPlayer : AIPlayer
 	/// <param name="game">The game that this AIMediumPlayer is a player in.</param>
 	public AIMediumPlayer(BattleShipsGame game) : base(game)
 	{
+		_col = GetColor("#a1a100");
+	}
+
+	/// <summary>
+	/// Gets the color of this player's turn indicator light.
+	/// </summary>
+	public override Color TurnIndicator {
+		get {
+			return _col;
+		}
 	}
 
 	/// <summary>

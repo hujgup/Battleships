@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 // using System.Data;
 using System.Diagnostics;
+using Color = SwinGameSDK.Color;
 /// <summary>
 /// The BattleShipsGame controls a big part of the game. It will add the two players
 /// to the game and make sure that both players ships are all deployed before starting the game.
@@ -44,6 +45,14 @@ public class BattleShipsGame
 	}
 
 	/// <summary>
+	/// Gets the current player's turn indicator light, or the next player's turn indicator light if the game is currently in an input-blocking phase.
+	/// </summary>
+	public Color TurnIndicator {
+		get;
+		private set;
+	}
+
+	/// <summary>
 	/// AddDeployedPlayer adds both players and will make sure
 	/// that the AI player deploys all ships
 	/// </summary>
@@ -68,6 +77,7 @@ public class BattleShipsGame
 	{
 		_players[0].Enemy = new SeaGridAdapter(_players[1].PlayerGrid);
 		_players[1].Enemy = new SeaGridAdapter(_players[0].PlayerGrid);
+		TurnIndicator = Player.TurnIndicator;
 	}
 
 	/// <summary>
@@ -80,13 +90,19 @@ public class BattleShipsGame
 	public AttackResult Shoot(int row, int col)
 	{
 		AttackResult newAttack = default(AttackResult);
-		int otherPlayer = (_playerIndex + 1) % 2;
+		int otherPlayer = (_playerIndex + 1)%2;
 
-		newAttack = Player.Shoot(row, col);
+		newAttack = Player.Shoot(row,col);
 
 		//Will exit the game when all players ships are destroyed
 		if (_players[otherPlayer].IsDestroyed) {
-			newAttack = new AttackResult(ResultOfAttack.GameOver, newAttack.Ship, newAttack.Text, row, col);
+			newAttack = new AttackResult(ResultOfAttack.GameOver,newAttack.Ship,newAttack.Text,row,col);
+		}
+
+		bool missed = newAttack.Value == ResultOfAttack.Miss;
+
+		if (missed) {
+			TurnIndicator = _players[otherPlayer].TurnIndicator;
 		}
 
 		if (AttackCompleted != null) {
@@ -94,7 +110,7 @@ public class BattleShipsGame
 		}
 
 		//change player if the last hit was a miss
-		if (newAttack.Value == ResultOfAttack.Miss) {
+		if (missed) {
 			_playerIndex = otherPlayer;
 		}
 
