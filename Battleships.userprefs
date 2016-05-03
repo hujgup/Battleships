@@ -1,18 +1,13 @@
 ﻿<Properties StartupItem="Battleships.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="src\GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src\Model\SeaGrid.cs">
     <Files>
-      <File FileName="src\GameLogic.cs" Line="13" Column="3" />
-      <File FileName="src\DeploymentController.cs" Line="120" Column="3" />
-      <File FileName="src\GameController.cs" Line="90" Column="15" />
+      <File FileName="src\GameLogic.cs" Line="26" Column="44" />
+      <File FileName="src\DeploymentController.cs" Line="74" Column="22" />
+      <File FileName="src\GameController.cs" Line="72" Column="13" />
+      <File FileName="src\Model\AIEasyPlayer.cs" Line="61" Column="3" />
+      <File FileName="src\Model\SeaGrid.cs" Line="129" Column="22" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State name="__root__">
-          <Node name="Battleships" expanded="True" selected="True" />
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

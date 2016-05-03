@@ -69,7 +69,17 @@ static class DeploymentController
 			if (selected != ShipName.None) {
 				_selectedShip = selected;
 			} else {
-				DoDeployClick();
+				Ship moving = GameController.HumanPlayer.PlayerGrid.GetShipNamed(_selectedShip);
+				try {
+					DoDeployClick();
+				} catch (Exception ex) {
+					Audio.PlaySoundEffect(GameResources.GameSound("Error"));
+					UtilityFunctions.Message = ex.Message;
+					Direction currentDir = _currentDirection;
+					_currentDirection = moving.Direction;
+					DeployShip(moving.Row,moving.Column);
+					_currentDirection = currentDir;
+				}
 			}
 
 			if (GameController.HumanPlayer.ReadyToDeploy & UtilityFunctions.IsMouseInRectangle(PLAY_BUTTON_LEFT,TOP_BUTTONS_TOP,PLAY_BUTTON_WIDTH,TOP_BUTTONS_HEIGHT)) {
@@ -150,7 +160,7 @@ static class DeploymentController
 	private static void DoDeployClick()
 	{
 		Tile clickedCell = GetClickedCell();
-		DeployShip(clickedCell.Row, clickedCell.Column);
+		DeployShip(clickedCell.Row, clickedCell.Column, false, false);
 	}
 
 	private static void DeployShip(int row,int col,bool supressExceptions,bool throwIfOutOfRange) {

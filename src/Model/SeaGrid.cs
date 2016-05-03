@@ -103,9 +103,13 @@ public class SeaGrid : ISeaGrid
 	/// <param name="col">the column selected</param>
 	/// <param name="ship">the ship selected</param>
 	/// <param name="direction">the direction the ship is going</param>
-	public void MoveShip(int row, int col, ShipName ship, Direction direction)
+	public void MoveShip(int row,int col,ShipName ship,Direction direction)
 	{
-		Ship newShip = _Ships[ship];
+		//Ship newShip = _Ships[ship];
+		Ship newShip = GetShipNamed(ship);
+		if (newShip == null) {
+			throw new ArgumentNullException("ShipName does not exist.");
+		}
 		newShip.Remove();
 		AddShip(row, col, direction, newShip);
 	}
@@ -114,7 +118,8 @@ public class SeaGrid : ISeaGrid
 	/// Gets the ship currently occupying the specified tile.
 	/// </summary>
 	/// <param name="location">The tile to check.</param>
-	public Ship GetShipAtTile(Tile location) {
+	public Ship GetShipAtTile(Tile location)
+	{
 		Ship res = null;
 		List<Tile> occupiedTiles;
 		foreach (KeyValuePair<ShipName, Ship> kvp in _Ships) {
@@ -130,6 +135,15 @@ public class SeaGrid : ISeaGrid
 			}
 		}
 		return res;
+	}
+
+	/// <summary>
+	/// Gets the ship on this grid with the specified ShipName, or null if no such ship exists.
+	/// </summary>
+	/// <param name="name">The name of the ship to get.</param>
+	public Ship GetShipNamed(ShipName name)
+	{
+		return _Ships.ContainsKey(name) ? _Ships[name] : null;
 	}
 
 	/// <summary>
