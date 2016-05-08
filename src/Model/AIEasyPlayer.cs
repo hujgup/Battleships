@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Color = SwinGameSDK.Color;
 
 /// <summary>
 /// The AIEasyPlayer is a type of AIPlayer that will always randomly fire, regardless
@@ -21,6 +22,8 @@ public class AIEasyPlayer : AIPlayer
 
 	private AIStates _CurrentState = AIStates.Searching;
 
+	private readonly Color _col;
+
 	/// <summary>
 	/// Initializes a new instance of an AIEasyPlayer
 	/// </summary>
@@ -29,6 +32,16 @@ public class AIEasyPlayer : AIPlayer
 	/// <param name="game">The game that this AIEasyPlayer is a player in.</param>
 	public AIEasyPlayer(BattleShipsGame game) : base(game)
 	{
+		_col = GetColor("#005682");
+	}
+
+	/// <summary>
+	/// Gets the color of this player's turn indicator light.
+	/// </summary>
+	public override Color TurnIndicator {
+		get {
+			return _col;
+		}
 	}
 
 	/// <summary>

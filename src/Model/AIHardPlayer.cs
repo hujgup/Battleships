@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 // using System.Data;
 using System.Diagnostics;
+using Color = SwinGameSDK.Color;
+
 /// <summary>
 /// AIHardPlayer is a type of player. This AI will know directions of ships
 /// when it has found 2 ship tiles and will try to destroy that ship. If that ship
@@ -100,6 +102,8 @@ public class AIHardPlayer : AIPlayer
 	private List<Target> _LastHit = new List<Target>();
 
 	private Target _CurrentTarget;
+	private readonly Color _col;
+
 	/// <summary>
 	/// Initializes a new instance of an AIHardPlayer
 	/// </summary>
@@ -108,6 +112,16 @@ public class AIHardPlayer : AIPlayer
 	/// <param name="game">The game that this AIHardPlayer is a player in.</param>
 	public AIHardPlayer(BattleShipsGame game) : base(game)
 	{
+		_col = GetColor("#a10000");
+	}
+
+	/// <summary>
+	/// Gets the color of this player's turn indicator light.
+	/// </summary>
+	public override Color TurnIndicator {
+		get {
+			return _col;
+		}
 	}
 
 	/// <summary>

@@ -1,5 +1,6 @@
 ﻿<Properties StartupItem="Battleships.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="AITests.cs">
     <Files>
       <File FileName="src\GameLogic.cs" Line="13" Column="3" />
@@ -24,6 +25,22 @@
         </State>
       </Pad>
     </Pads>
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="src\Model\BattleShipsGame.cs">
+    <Files>
+      <File FileName="src\GameLogic.cs" Line="26" Column="44" />
+      <File FileName="src\DeploymentController.cs" Line="74" Column="22" />
+      <File FileName="src\GameController.cs" Line="337" Column="11" />
+      <File FileName="src\Model\AIEasyPlayer.cs" Line="79" Column="26" />
+      <File FileName="src\Model\SeaGrid.cs" Line="132" Column="5" />
+      <File FileName="src\Model\BattleShipsGame.cs" Line="50" Column="1" />
+      <File FileName="src\Model\AIPlayer.cs" Line="111" Column="1" />
+      <File FileName="src\Model\Player.cs" Line="37" Column="59" />
+      <File FileName="src\DiscoveryController.cs" Line="9" Column="1" />
+      <File FileName="src\Model\AIMediumPlayer.cs" Line="45" Column="1" />
+      <File FileName="src\Model\AIHardPlayer.cs" Line="119" Column="32" />
+    </Files>
+>>>>>>> d7c62151da2186d45c8fe030d4d09214036244a0
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

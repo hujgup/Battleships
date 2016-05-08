@@ -108,7 +108,6 @@ public abstract class AIPlayer : Player
 		}
 	}
 
-
 	/// <summary>
 	/// Initializes a new instance of an AIPlayer
 	/// </summary>
