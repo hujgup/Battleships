@@ -1,15 +1,26 @@
 ﻿<Properties StartupItem="Battleships.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="src\GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AITests.cs">
     <Files>
       <File FileName="src\GameLogic.cs" Line="13" Column="3" />
-      <File FileName="src\DeploymentController.cs" Line="120" Column="3" />
-      <File FileName="src\GameController.cs" Line="90" Column="15" />
+      <File FileName="src\DeploymentController.cs" Line="7" Column="1" />
+      <File FileName="src\GameController.cs" Line="7" Column="1" />
+      <File FileName="src\HighScoreController.cs" Line="26" Column="36" />
+      <File FileName="src\Model\AIPlayer.cs" Line="1" Column="1" />
+      <File FileName="src\MenuController.cs" Line="1" Column="1" />
+      <File FileName="AITests.cs" Line="17" Column="2" />
     </Files>
     <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
+      <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Battleships" expanded="True" selected="True" />
+          <Node name="Battleships" expanded="True">
+            <Node name="Battleships" expanded="True">
+              <Node name="src" expanded="True">
+                <Node name="Model" expanded="True" />
+              </Node>
+              <Node name="AITests.cs" selected="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
