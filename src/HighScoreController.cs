@@ -25,13 +25,15 @@ static class HighScoreController
 		/*
 			File structore definition:
 
-			Repeat the following unti EOF:
+			Repeat the following until EOF:
 				The first byte describes the byte length of the player name
 					The next n bytes are the player name
 				The next byte describes the byte length of the score value
 					The next n bytes are the score value
+
+			If EOF is found in the middle of an iteration, the file is invalid and undefined behavior occurs
 		*/
-		private const string _PATH = SwinGame.PathToResource("highscores.txt");
+		private static readonly string _PATH = SwinGame.PathToResource("highscores.txt");
 		private static byte[] GetComponents(long value)
 		{
 			long length = (long)Math.Ceiling(Math.Log(value, 8));
@@ -57,12 +59,12 @@ static class HighScoreController
 				{
 					s = new Score();
 					s.Name = "";
-					nameLength = stream.ReadByte();
+					nameLength = (byte)stream.ReadByte();
 					for (i = 0; i < nameLength; i++)
 					{
 						s.Name += (char)stream.ReadByte();
 					}
-					scoreLength = stream.ReadByte();
+					scoreLength = (byte)stream.ReadByte();
 					int multiplier = 1;
 					for (i = 0; i < scoreLength; i++, multiplier *= 256)
 					{
@@ -94,9 +96,16 @@ static class HighScoreController
 			}
 
 		}
+		public static void Write(string name, int value)
+		{
+			Score s = new Score();
+			s.Name = name;
+			s.Value = value;
+			Write(s);
+		}
 		public static void Write(Score s)
 		{
-			List<Score> scores = new List<ScoreIO>(1);
+			List<Score> scores = new List<Score>(1);
 			scores.Add(s);
 			Write(scores);
 		}
@@ -106,11 +115,19 @@ static class HighScoreController
 	/// The score structure is used to keep the name and
 	/// score of the top players together.
 	/// </summary>
-	private struct Score : IComparable
+	private struct Score : IEquatable<Score>, IComparable<Score>, IComparable
 	{
 		public string Name;
 
 		public int Value;
+		public bool Equals(Score other)
+		{
+			return Name == other.Name && Value == other.Value;
+		}
+		public int CompareTo(Score other)
+		{
+			return Math.Sign(other.Value - Value);
+		}
 		/// <summary>
 		/// Allows scores to be compared to facilitate sorting
 		/// </summary>
@@ -119,16 +136,41 @@ static class HighScoreController
 		public int CompareTo(object obj)
 		{
 			if (obj is Score) {
+				return CompareTo((Score)obj);
+/*
 				Score other = (Score)obj;
 
 				return other.Value - this.Value;
+*/
 			} else {
 				return 0;
 			}
 		}
+		public override bool Equals(object obj)
+		{
+			if (obj is Score) {
+				return Equals((Score)obj);
+			} else {
+				return false;
+			}
+		}
+		public override int GetHashCode()
+		{
+			unchecked {
+				return Name.GetHashCode() + Value.GetHashCode();
+			}
+		}
+		public static bool operator ==(Score a, Score b)
+		{
+			return a.Equals(b);
+		}
+		public static bool operator !=(Score a, Score b)
+		{
+			return !a.Equals(b);
+		}
 	}
 
-
+	private static List<Score> _ScoresInFile = new List<Score>();
 	private static List<Score> _Scores = new List<Score>();
 	/// <summary>
 	/// Loads the scores from the highscores text file.
@@ -142,6 +184,11 @@ static class HighScoreController
 	/// </remarks>
 	private static void LoadScores()
 	{
+		_Scores = ScoreIO.Read();
+		_Scores.Sort();
+		_ScoresInFile = new List<Score>(_Scores);
+
+/*
 		string filename = null;
 		filename = SwinGame.PathToResource("highscores.txt");
 
@@ -167,6 +214,7 @@ static class HighScoreController
 			_Scores.Add(s);
 		}
 		input.Close();
+*/
 	}
 
 	/// <summary>
@@ -179,8 +227,14 @@ static class HighScoreController
 	/// 
 	/// Where NNN is the name and SSS is the score
 	/// </remarks>
-	private static void SaveScores()
-	{
+	private static void SaveScores() {
+		foreach (Score s in _Scores) {
+			if (!_ScoresInFile.Contains(s)) {
+				ScoreIO.Write(s);
+			}
+		}
+		_ScoresInFile = new List<Score>(_Scores);
+/*
 		string filename = null;
 		filename = SwinGame.PathToResource("highscores.txt");
 
@@ -194,6 +248,7 @@ static class HighScoreController
 		}
 
 		output.Close();
+*/
 	}
 
 	/// <summary>
