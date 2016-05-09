@@ -19,6 +19,89 @@ static class HighScoreController
 	private const int NAME_WIDTH = 5;
 
 	private const int SCORES_LEFT = 490;
+
+	private static class ScoreIO
+	{
+		/*
+			File structore definition:
+
+			Repeat the following unti EOF:
+				The first byte describes the byte length of the player name
+					The next n bytes are the player name
+				The next byte describes the byte length of the score value
+					The next n bytes are the score value
+		*/
+		private const string _PATH = SwinGame.PathToResource("highscores.txt");
+		private static byte[] GetComponents(long value)
+		{
+			long length = (long)Math.Ceiling(Math.Log(value, 8));
+			byte[] buffer = new byte[length];
+			byte[] bytes = BitConverter.GetBytes(value);
+			for (long i = 0; i < length; i++)
+			{
+				buffer[i] = bytes[i];
+			}
+			return buffer;
+		}
+		public static List<Score> Read()
+		{
+			List<Score> res = new List<Score>();
+			using (FileStream stream = new FileStream(_PATH, FileMode.Open))
+			{
+				Score s;
+				s.Name = "";
+				byte nameLength;
+				byte scoreLength;
+				byte i;
+				while (stream.Position < stream.Length)
+				{
+					s = new Score();
+					s.Name = "";
+					nameLength = stream.ReadByte();
+					for (i = 0; i < nameLength; i++)
+					{
+						s.Name += (char)stream.ReadByte();
+					}
+					scoreLength = stream.ReadByte();
+					int multiplier = 1;
+					for (i = 0; i < scoreLength; i++, multiplier *= 256)
+					{
+						s.Value += multiplier*stream.ReadByte();
+					}
+					res.Add(s);
+				}
+			}
+			return res;
+		}
+		public static void Write(List<Score> scores)
+		{
+			using (FileStream stream = new FileStream(_PATH,FileMode.Append))
+			{
+				foreach (Score s in scores)
+				{
+					stream.WriteByte((byte)s.Name.Length);
+					for (int i = 0; i < s.Name.Length; i++)
+					{
+						stream.WriteByte((byte)s.Name[i]);
+					}
+					byte[] components = GetComponents(s.Value);
+					stream.WriteByte((byte)components.Length);
+					for (int i = 0; i < components.Length; i++)
+					{
+						stream.WriteByte(components[i]);
+					}
+				}
+			}
+
+		}
+		public static void Write(Score s)
+		{
+			List<Score> scores = new List<ScoreIO>(1);
+			scores.Add(s);
+			Write(scores);
+		}
+	}
+
 	/// <summary>
 	/// The score structure is used to keep the name and
 	/// score of the top players together.
