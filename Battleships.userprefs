@@ -2,11 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="src\HighScoreController.cs">
     <Files>
-      <File FileName="src\HighScoreController.cs" Line="129" Column="34" />
-      <File FileName="src\GameLogic.cs" Line="14" Column="1" />
-      <File FileName="src\Model\AIEasyPlayer.cs" Line="82" Column="2" />
-      <File FileName="AITests.cs" Line="11" Column="4" />
-      <File FileName="src\EndingGameController.cs" Line="27" Column="39" />
+      <File FileName="src\HighScoreController.cs" Line="34" Column="96" />
+      <File FileName="src\GameLogic.cs" Line="1" Column="1" />
+      <File FileName="src\Model\AIEasyPlayer.cs" Line="1" Column="1" />
+      <File FileName="AITests.cs" Line="1" Column="1" />
+      <File FileName="src\EndingGameController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

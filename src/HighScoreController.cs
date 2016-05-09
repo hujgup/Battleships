@@ -31,7 +31,7 @@ static class HighScoreController
 				The next byte describes the byte length of the score value
 					The next n bytes are the score value
 
-			If EOF is found in the middle of an iteration, the file is invalid and undefined behavior occurs
+			If EOF is found in the middle of an iteration, readers should throw an EndOfStreamException.
 		*/
 		private static readonly string _PATH = SwinGame.PathToResource("highscores.txt");
 		private static byte[] GetComponents(long value)
@@ -44,6 +44,13 @@ static class HighScoreController
 				buffer[i] = bytes[i];
 			}
 			return buffer;
+		}
+		private static byte SafeReadByte(Stream stream)
+		{
+			if (stream.Position >= stream.Length) {
+				throw new EndOfStreamException("Unexpected end of file at position " + stream.Position.ToString());
+			}
+			return (byte)stream.ReadByte();
 		}
 		public static List<Score> Read()
 		{
@@ -59,12 +66,12 @@ static class HighScoreController
 				{
 					s = new Score();
 					s.Name = "";
-					nameLength = (byte)stream.ReadByte();
+					nameLength = SafeReadByte(stream);
 					for (i = 0; i < nameLength; i++)
 					{
 						s.Name += (char)stream.ReadByte();
 					}
-					scoreLength = (byte)stream.ReadByte();
+					scoreLength = SafeReadByte(stream);
 					int multiplier = 1;
 					for (i = 0; i < scoreLength; i++, multiplier *= 256)
 					{
