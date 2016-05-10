@@ -29,6 +29,9 @@ static class DiscoveryController
 		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
 			DoAttack();
 		}
+        if (UtilityFunctions.IsMouseInRectangle(125, 94, 75, 15) && SwinGame.MouseClicked(MouseButton.LeftButton)) {
+            GameController.AddNewState(GameState.ViewingGameMenu);
+        }
 	}
 
 	/// <summary>
@@ -75,6 +78,7 @@ static class DiscoveryController
 		SwinGame.DrawText(GameController.HumanPlayer.Shots.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
 		SwinGame.DrawText(GameController.HumanPlayer.Hits.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, HITS_TOP);
 		SwinGame.DrawText(GameController.HumanPlayer.Missed.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SPLASH_TOP);
+        SwinGame.DrawTextLines("Game Menu", Color.CadetBlue, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, 125, 94, 75, 15);
 	}
 
 }
