@@ -19,15 +19,122 @@ static class HighScoreController
 	private const int NAME_WIDTH = 5;
 
 	private const int SCORES_LEFT = 490;
+
+	private static class ScoreIO
+	{
+		/*
+			File structore definition:
+
+			Repeat the following until EOF:
+				The first byte describes the byte length of the player name
+					The next n bytes are the player name
+				The next byte describes the byte length of the score value
+					The next n bytes are the score value
+
+			If EOF is found in the middle of an iteration, readers should throw an EndOfStreamException.
+		*/
+		private static readonly string _PATH = SwinGame.PathToResource("highscores.txt");
+		private static byte[] GetComponents(long value)
+		{
+			long length = (long)Math.Ceiling(Math.Log(value, 8));
+			byte[] buffer = new byte[length];
+			byte[] bytes = BitConverter.GetBytes(value);
+			for (long i = 0; i < length; i++)
+			{
+				buffer[i] = bytes[i];
+			}
+			return buffer;
+		}
+		private static byte SafeReadByte(Stream stream)
+		{
+			if (stream.Position >= stream.Length) {
+				throw new EndOfStreamException("Unexpected end of file at position " + stream.Position.ToString());
+			}
+			return (byte)stream.ReadByte();
+		}
+		public static List<Score> Read()
+		{
+			List<Score> res = new List<Score>();
+			using (FileStream stream = new FileStream(_PATH, FileMode.Open))
+			{
+				Score s;
+				s.Name = "";
+				byte nameLength;
+				byte scoreLength;
+				byte i;
+				while (stream.Position < stream.Length)
+				{
+					s = new Score();
+					s.Name = "";
+					nameLength = SafeReadByte(stream);
+					for (i = 0; i < nameLength; i++)
+					{
+						s.Name += (char)stream.ReadByte();
+					}
+					scoreLength = SafeReadByte(stream);
+					int multiplier = 1;
+					for (i = 0; i < scoreLength; i++, multiplier *= 256)
+					{
+						s.Value += multiplier*stream.ReadByte();
+					}
+					res.Add(s);
+				}
+			}
+			return res;
+		}
+		public static void Write(List<Score> scores)
+		{
+			using (FileStream stream = new FileStream(_PATH,FileMode.Append))
+			{
+				foreach (Score s in scores)
+				{
+					stream.WriteByte((byte)s.Name.Length);
+					for (int i = 0; i < s.Name.Length; i++)
+					{
+						stream.WriteByte((byte)s.Name[i]);
+					}
+					byte[] components = GetComponents(s.Value);
+					stream.WriteByte((byte)components.Length);
+					for (int i = 0; i < components.Length; i++)
+					{
+						stream.WriteByte(components[i]);
+					}
+				}
+			}
+
+		}
+		public static void Write(string name, int value)
+		{
+			Score s = new Score();
+			s.Name = name;
+			s.Value = value;
+			Write(s);
+		}
+		public static void Write(Score s)
+		{
+			List<Score> scores = new List<Score>(1);
+			scores.Add(s);
+			Write(scores);
+		}
+	}
+
 	/// <summary>
 	/// The score structure is used to keep the name and
 	/// score of the top players together.
 	/// </summary>
-	private struct Score : IComparable
+	private struct Score : IEquatable<Score>, IComparable<Score>, IComparable
 	{
 		public string Name;
 
 		public int Value;
+		public bool Equals(Score other)
+		{
+			return Name == other.Name && Value == other.Value;
+		}
+		public int CompareTo(Score other)
+		{
+			return Math.Sign(other.Value - Value);
+		}
 		/// <summary>
 		/// Allows scores to be compared to facilitate sorting
 		/// </summary>
@@ -36,16 +143,41 @@ static class HighScoreController
 		public int CompareTo(object obj)
 		{
 			if (obj is Score) {
+				return CompareTo((Score)obj);
+/*
 				Score other = (Score)obj;
 
 				return other.Value - this.Value;
+*/
 			} else {
 				return 0;
 			}
 		}
+		public override bool Equals(object obj)
+		{
+			if (obj is Score) {
+				return Equals((Score)obj);
+			} else {
+				return false;
+			}
+		}
+		public override int GetHashCode()
+		{
+			unchecked {
+				return Name.GetHashCode() + Value.GetHashCode();
+			}
+		}
+		public static bool operator ==(Score a, Score b)
+		{
+			return a.Equals(b);
+		}
+		public static bool operator !=(Score a, Score b)
+		{
+			return !a.Equals(b);
+		}
 	}
 
-
+	private static List<Score> _ScoresInFile = new List<Score>();
 	private static List<Score> _Scores = new List<Score>();
 	/// <summary>
 	/// Loads the scores from the highscores text file.
@@ -59,6 +191,11 @@ static class HighScoreController
 	/// </remarks>
 	private static void LoadScores()
 	{
+		_Scores = ScoreIO.Read();
+		_Scores.Sort();
+		_ScoresInFile = new List<Score>(_Scores);
+
+/*
 		string filename = null;
 		filename = SwinGame.PathToResource("highscores.txt");
 
@@ -84,6 +221,7 @@ static class HighScoreController
 			_Scores.Add(s);
 		}
 		input.Close();
+*/
 	}
 
 	/// <summary>
@@ -96,8 +234,14 @@ static class HighScoreController
 	/// 
 	/// Where NNN is the name and SSS is the score
 	/// </remarks>
-	private static void SaveScores()
-	{
+	private static void SaveScores() {
+		foreach (Score s in _Scores) {
+			if (!_ScoresInFile.Contains(s)) {
+				ScoreIO.Write(s);
+			}
+		}
+		_ScoresInFile = new List<Score>(_Scores);
+/*
 		string filename = null;
 		filename = SwinGame.PathToResource("highscores.txt");
 
@@ -111,6 +255,7 @@ static class HighScoreController
 		}
 
 		output.Close();
+*/
 	}
 
 	/// <summary>

@@ -1,49 +1,40 @@
+<<<<<<< HEAD
 ﻿<Properties StartupItem="Battleships.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="AITests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src\HighScoreController.cs">
     <Files>
-      <File FileName="src\GameLogic.cs" Line="13" Column="3" />
-      <File FileName="src\DeploymentController.cs" Line="7" Column="1" />
-      <File FileName="src\GameController.cs" Line="7" Column="1" />
-      <File FileName="src\HighScoreController.cs" Line="26" Column="36" />
-      <File FileName="src\Model\AIPlayer.cs" Line="1" Column="1" />
-      <File FileName="src\MenuController.cs" Line="1" Column="1" />
-      <File FileName="AITests.cs" Line="17" Column="2" />
+      <File FileName="src\HighScoreController.cs" Line="34" Column="96" />
+      <File FileName="src\GameLogic.cs" Line="1" Column="1" />
+      <File FileName="src\Model\AIEasyPlayer.cs" Line="1" Column="1" />
+      <File FileName="AITests.cs" Line="1" Column="1" />
+      <File FileName="src\EndingGameController.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Battleships" expanded="True">
-            <Node name="Battleships" expanded="True">
-              <Node name="src" expanded="True">
-                <Node name="Model" expanded="True" />
-              </Node>
-              <Node name="AITests.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="src\Model\BattleShipsGame.cs">
-    <Files>
-      <File FileName="src\GameLogic.cs" Line="26" Column="44" />
-      <File FileName="src\DeploymentController.cs" Line="74" Column="22" />
-      <File FileName="src\GameController.cs" Line="337" Column="11" />
-      <File FileName="src\Model\AIEasyPlayer.cs" Line="79" Column="26" />
-      <File FileName="src\Model\SeaGrid.cs" Line="132" Column="5" />
-      <File FileName="src\Model\BattleShipsGame.cs" Line="50" Column="1" />
-      <File FileName="src\Model\AIPlayer.cs" Line="111" Column="1" />
-      <File FileName="src\Model\Player.cs" Line="37" Column="59" />
-      <File FileName="src\DiscoveryController.cs" Line="9" Column="1" />
-      <File FileName="src\Model\AIMediumPlayer.cs" Line="45" Column="1" />
-      <File FileName="src\Model\AIHardPlayer.cs" Line="119" Column="32" />
-    </Files>
->>>>>>> d7c62151da2186d45c8fe030d4d09214036244a0
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+=======
+﻿<Properties StartupItem="Battleships.csproj" RefactoringSettings.EnableRefactorings="True">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="src\MenuController.cs">
+    <Files>
+      <File FileName="src\GameLogic.cs" Line="24" Column="23" />
+      <File FileName="src\MenuController.cs" Line="321" Column="76" />
+      <File FileName="src\GameController.cs" Line="232" Column="23" />
+      <File FileName="src\Model\BattleShipsGame.cs" Line="95" Column="25" />
+      <File FileName="src\DeploymentController.cs" Line="87" Column="27" />
+      <File FileName="src\Model\Player.cs" Line="317" Column="24" />
+      <File FileName="src\Model\AIPlayer.cs" Line="106" Column="4" />
+      <File FileName="src\Model\SeaGrid.cs" Line="200" Column="10" />
+      <File FileName="src\Model\ISeaGrid.cs" Line="46" Column="2" />
+      <File FileName="src\Model\Ship.cs" Line="140" Column="12" />
+      <File FileName="src\DiscoveryController.cs" Line="54" Column="21" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+>>>>>>> fcee7a1... add reset button to game menu - no functionality yet
 </Properties>

@@ -14,12 +14,13 @@ using SwinGameSDK;
 
 static class EndingGameController
 {
-
+	static Stopwatch sw = new Stopwatch();
 	/// <summary>
 	/// Draw the end of the game screen, shows the win/lose state
 	/// </summary>
 	public static void DrawEndOfGame()
 	{
+		sw.Start ();
 		UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
 		UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
 
@@ -37,11 +38,12 @@ static class EndingGameController
 	public static void HandleEndOfGameInput()
 	{
 		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.vk_RETURN) || SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
-			HighScoreController.ReadHighScore(GameController.HumanPlayer.Score);
-			GameController.EndCurrentState();
+			if (sw.ElapsedMilliseconds > 5000) {
+				HighScoreController.ReadHighScore (GameController.HumanPlayer.Score);
+				GameController.EndCurrentState();
+			}
 		}
 	}
-
 }
 
 //=======================================================

@@ -73,7 +73,7 @@ public class BattleShipsGame
 	/// Assigns each player the other's grid as the enemy grid. This allows each player
 	/// to examine the details visable on the other's sea grid.
 	/// </summary>
-	private void CompleteDeployment()
+	public void CompleteDeployment()
 	{
 		_players[0].Enemy = new SeaGridAdapter(_players[1].PlayerGrid);
 		_players[1].Enemy = new SeaGridAdapter(_players[0].PlayerGrid);

@@ -32,7 +32,8 @@ static class MenuController
 		new string[] {
 			"RETURN",
 			"SURRENDER",
-			"QUIT"
+			"QUIT",
+			"RESTART"
 		},
 		new string[] {
 			"EASY",
@@ -61,12 +62,13 @@ static class MenuController
 	private const int SETUP_MENU_EASY_BUTTON = 0;
 	private const int SETUP_MENU_MEDIUM_BUTTON = 1;
 	private const int SETUP_MENU_HARD_BUTTON = 2;
-
 	private const int SETUP_MENU_EXIT_BUTTON = 3;
+
 	private const int GAME_MENU_RETURN_BUTTON = 0;
 	private const int GAME_MENU_SURRENDER_BUTTON = 1;
-
+	private const int GAME_MENU_RESET_BUTTON = 3;
 	private const int GAME_MENU_QUIT_BUTTON = 2;
+
 	private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 
 	private static readonly Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
@@ -312,7 +314,11 @@ static class MenuController
 				GameController.EndCurrentState();
 				//end game menu
 				GameController.EndCurrentState();
-				//end game
+				//end game 
+				break;
+		case GAME_MENU_RESET_BUTTON:
+			Console.WriteLine ("ThResetButton");
+			// GameController.StartGame(); starts a new game - random ship positions
 				break;
 			case GAME_MENU_QUIT_BUTTON:
 				GameController.AddNewState(GameState.Quitting);
