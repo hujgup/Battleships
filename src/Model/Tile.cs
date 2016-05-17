@@ -9,7 +9,7 @@ using System.Diagnostics;
 /// Tile knows its location on the grid, if it is a ship and if it has been
 /// shot before
 /// </summary>
-public class Tile
+public class Tile : IEquatable<Tile>
 {
 		//the row value of the tile
 	private readonly int _RowValue;
@@ -127,6 +127,23 @@ public class Tile
 		} else {
 			throw new ApplicationException("You have already shot this square");
 		}
+	}
+	/// <summary>
+	/// Determines whether the specified <see cref="Tile"/> is equal to the current <see cref="Tile"/>.
+	/// </summary>
+	/// <returns>true if the specified <see cref="Tile"/> is equal to the current <see cref="Tile"/>; otherwise, false.</returns>
+	/// <param name="other">The <see cref="Tile"/> to compare with the current <see cref="Tile"/>.</param>
+	public bool Equals(Tile other)
+	{
+		return Row == other.Row && Column == other.Column && Ship == other.Ship;
+	}
+	/// <summary>
+	/// Returns a string that represents the current object.
+	/// </summary>
+	/// <returns>A string that represents the current object.</returns>
+	public override string ToString()
+	{
+		return string.Format("x = {0}, y = {1}, shipType = {2}", Row, Column, Ship.Type);
 	}
 }
 

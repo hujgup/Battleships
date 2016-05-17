@@ -172,7 +172,7 @@ public class SeaGrid : ISeaGrid
 
 			//place ship's tiles in array and into ship object
 			int i = 0;
-			for (i = 0; i <= size - 1; i++) {
+			for (i = 0; i < size; i++) {
 				if (currentRow < 0 | currentRow >= Width | currentCol < 0 | currentCol >= Height) {
 					throw new InvalidOperationException("Ship can't fit on the board");
 				}

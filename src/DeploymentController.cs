@@ -64,7 +64,7 @@ static class DeploymentController
 		}
 
 		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
-      UtilityFunctions.Message = "";
+			UtilityFunctions.Message = "";
 			ShipName selected = default(ShipName);
 			selected = GetShipMouseIsOver();
 			if (selected != ShipName.None) {

@@ -73,6 +73,7 @@
     <Compile Include="src\Model\TileView.cs" />
     <Compile Include="src\Model\AIEasyPlayer.cs" />
     <Compile Include="AITests.cs" />
+    <Compile Include="DeploymentControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
