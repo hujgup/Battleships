@@ -216,6 +216,8 @@ public static class GameController
 		_theGame.AddDeployedPlayer(_ai);
 
 		SwitchState(GameState.Discovering);
+		SwinGame.StopMusic();
+		SwinGame.PlayMusic(GameResources.GameMusic("BattleSong"));
 	}
 
 	/// <summary>
@@ -261,7 +263,9 @@ public static class GameController
 				if (object.ReferenceEquals(_theGame.Player, ComputerPlayer))
 					AIAttack();
 				break;
-			case ResultOfAttack.GameOver:
+		case ResultOfAttack.GameOver:
+			SwinGame.StopMusic ();
+			SwinGame.PlayMusic(GameResources.GameMusic("BackGround"));
 				SwitchState(GameState.EndingGame);
 				break;
 		}

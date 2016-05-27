@@ -313,6 +313,8 @@ static class MenuController
 				//end game menu
 				GameController.EndCurrentState();
 				//end game
+			SwinGame.StopMusic();
+			SwinGame.PlayMusic(GameResources.GameMusic("Background"));
 				break;
 			case GAME_MENU_QUIT_BUTTON:
 				GameController.AddNewState(GameState.Quitting);
