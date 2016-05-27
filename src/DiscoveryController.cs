@@ -28,6 +28,7 @@ static class DiscoveryController
 
 		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
 			DoAttack();
+
 		}
         if (UtilityFunctions.IsMouseInRectangle(125, 94, 75, 15) && SwinGame.MouseClicked(MouseButton.LeftButton)) {
             GameController.AddNewState(GameState.ViewingGameMenu);
@@ -54,6 +55,7 @@ static class DiscoveryController
 				GameController.Attack(row, col);
 			}
 		}
+
 	}
 
 	/// <summary>

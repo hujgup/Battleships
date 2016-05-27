@@ -19,6 +19,33 @@ public static class GameController
 
 	private static AIPlayer _ai;
 
+	private static Timer tmr;
+	private static int time;
+	/// <summary>
+	/// Gets or sets the time.
+	/// </summary>
+	/// <value>The time.</value>
+	public static int Time {
+		get {
+			return time;
+		}
+		set {
+			time = value;
+		}
+	}
+
+	/// <summary>
+	/// Gets or sets the tmr.
+	/// </summary>
+	/// <value>The tmr.</value>
+	public static Timer Tmr {
+		get {
+			return tmr;
+		}
+		set {
+			tmr = value;
+		}
+	}
 	
 
 	private static Stack<GameState> _state = new Stack<GameState>();
@@ -94,8 +121,11 @@ public static class GameController
 				break;
 		}
 
-		_human = new Player(_theGame);
+		Tmr = new Timer ();
+		tmr.Start ();
+		time = 0;
 
+		_human = new Player(_theGame);
 		
 		_ai.PlayerGrid.Changed += GridChanged;
 		_theGame.AttackCompleted += AttackCompleted;
@@ -334,10 +364,17 @@ public static class GameController
 			case GameState.Deploying:
 				DeploymentController.DrawDeployment();
 				break;
-			case GameState.Discovering:
-				DiscoveryController.DrawDiscovery();
-				SwinGame.DrawCircle(_theGame.TurnIndicator,280,300,5);
-				SwinGame.FillCircle(_theGame.TurnIndicator,280,300,4);
+		case GameState.Discovering:
+			DiscoveryController.DrawDiscovery ();
+			SwinGame.DrawCircle (_theGame.TurnIndicator, 280, 300, 5);
+			SwinGame.FillCircle (_theGame.TurnIndicator, 280, 300, 4);
+
+			if (tmr.Ticks > 1000) {
+				time++;
+				tmr.Reset ();
+			}
+			SwinGame.DrawText ("Timer: " + time.ToString (), Color.White, 500, 100);
+
 				break;
 			case GameState.EndingGame:
 				EndingGameController.DrawEndOfGame();
